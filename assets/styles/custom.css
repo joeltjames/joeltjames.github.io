@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:700);
+
+#nfl {
+    font-family: 'Lato', sans-serif;
+	width:100%;
+	margin:0;
+    background-color: #457b9d;
+}
+
+.container
+{
+    min-width:675px;
+}
+
+*, *:before, *:after{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}

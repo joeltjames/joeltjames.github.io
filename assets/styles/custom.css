@@ -1,19 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:700);
+/* Color Pallette
+--imperial-red: #e63946;
+--honeydew: #f1faee;
+--powder-blue: #a8dadc;
+--celadon-blue: #457b9d;
+--prussian-blue: #1d3557; 
+*/
+
+html,
+body {
+  height: 100%;
+}
 
 #nfl {
-    font-family: 'Lato', sans-serif;
-	width:100%;
-	margin:0;
-    background-color: #457b9d;
+  font-family: 'Lato', sans-serif;
+  background-color: #1D3557;
 }
 
-.container
-{
-    min-width:675px;
+.jumbotron {
+  background-color: #457b9d;
+  margin-bottom: 10px;
 }
 
-*, *:before, *:after{
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+.icon {
+  width: 10vw;
+  margin-right: 20px;
+}
+
+.main-container {
+  background-color: white;
+  max-width: 1110px;
 }

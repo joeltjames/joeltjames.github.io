@@ -30,3 +30,8 @@
 .main {
   background-color: white;
 }
+
+.mail-to {
+  color: #212529; 
+  text-decoration: none;
+}

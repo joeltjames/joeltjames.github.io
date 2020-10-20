@@ -2,6 +2,20 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-49941912-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-49941912-3');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
@@ -13,25 +27,15 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-          crossorigin="anonymous"></script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-          crossorigin="anonymous"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
           crossorigin="anonymous"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/lodash@4/lodash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/d3@6.2.0/dist/d3.min.js"
           crossorigin="anonymous"></script>
+
   <link rel="stylesheet"
-        href="assets/styles/custom.css">
+        href="assets/styles/nfl-injury.css">
 </head>
 
 <body id="nfl">
@@ -43,24 +47,49 @@
         2020 NFL Injuries
         <br>
       </h1>
-      <p class="lead">Are injuries worse this year than ever before?</p>
+      <p class="lead">Are injuries worse this year than in prior seasons?</p>
     </div>
   </div>
-  <div class="container main-container">
-    This NFL season seems to have been wrought with injuries.
-    <br />
-    Each week seems to bring about another star NFL running back, wide receiver, or quarterback's season ending injury.
-    <br />
-    <br />
-    But have there <i>actually</i> been more injuries reported than in previous seasons?
-    <br />
-    <br />
-    <h5>By the numbers...</h5>
-    <canvas id="injury-report-by-type"></canvas>
+  <div class="container">
+    <div class="jumbotron main">
+      This NFL season seems to have been wrought with injuries.
+      <br />
+      Each week seems to bring about another star NFL running back, wide receiver, or quarterback's season ending injury.
+      <br />
+      <br />
+      But have there <i>actually</i> been more injuries reported than in previous seasons?
+      <br />
+      <br />
+      One logical place to begin answering this question is by looking at the weekly injury reports.
+      Each week, teams report when players miss pratice, or are expected to miss games, as well as the type of injury that players are dealing with.
+      The following data is a summation of all injuries reported by teams up until week <span id="week-num"></span> of the respective seasons, with non-injuries removed from the list.
+      We also filter out any reported injury which did not result in a status of <b>Questionable</b>, <b>Doubtful</b>, or <b>Out</b>.
+      <canvas id="injury-report-by-type"></canvas>
+
+      As we can see, there have actually been <i>less</i> injuries reported up until this point by teams.
+      This seems to be disprove the idea that there have been more injuries during the 2020 season than in preivous season...
+      <br />
+      <br />
+      <h5>BUT...</h5>
+      The only players listed on the weekly injury reports are those who are on a team's <i>Active Roster</i>...
+      Meaning any player who is placed on the <i>Injured Reserve</i> list are <b>not</b> included in this report.
+      In order to get truly answer our question, we need to inspect the number of players placed on the IR list during the 2020 season.
+      <canvas id="injured-reserve"></canvas>
+      Based on this data, we see that there have been <i>significantly</i> more players placed on IR this season than in the prior four seasons.
+      The average number of players placed on IR at this point in this season is <span id="avg-ir"></span>, with a standard deviation of <span id="sd-ir"></span>.
+      <br />
+      <br />
+      In order to determine if there are actually more injuries this season than in prior seasons, we can combine the number of injuries reported with the number of players placed on IR...
+      <canvas id="combined"></canvas>
+      When viewed, we can see that the combined numbers are in line with the last few seasons.
+
+      <h3>Conclusion</h3>
+      When viewed in aggregate, the number of overall injuries in 2020 are on par with the last 4 years, up to this point in the year. However, <i>serious</i> injuries resulting in players being placed on the IR list are up by <b id="pct-inc"></b> over the average up to this point.
+    </div>
   </div>
 
 
-  <script src="assets/scripts/custom.js"></script>
+  <script src="assets/scripts/nfl-injury.js"></script>
 </body>
 
 </html>

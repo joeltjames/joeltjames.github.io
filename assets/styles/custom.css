@@ -7,11 +7,6 @@
 --prussian-blue: #1d3557; 
 */
 
-html,
-body {
-  height: 100%;
-}
-
 #nfl {
   font-family: 'Lato', sans-serif;
   background-color: #1D3557;

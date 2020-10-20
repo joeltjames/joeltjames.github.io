@@ -1,11 +1,13 @@
-console.log('hi');
-
 MAX_WEEK = 6;
+NUM_INJURIES = 4;
 
 d3.csv('assets/data/injury_report_data.csv')
   .then(makeChart);
 
 function makeChart(data) {
+  const isPhone = window.matchMedia("(max-width: 768px)").matches;
+  const isIpad = window.matchMedia("(max-width: 1024px)").matches;
+
   chartData = _.filter(data, function(datum) {
     return datum.week <= MAX_WEEK
   });
@@ -26,7 +28,7 @@ function makeChart(data) {
       [type]: all_types[type]
     });
   }
-  toKeep = allTypesList.sort((a, b) => Object.values(b)[0] - Object.values(a)[0]).slice(0, 10).map(a => Object.keys(a)[0]);
+  toKeep = allTypesList.sort((a, b) => Object.values(b)[0] - Object.values(a)[0]).slice(0, NUM_INJURIES).map(a => Object.keys(a)[0]);
 
   for (val in chartData) {
     byType = _.groupBy(chartData[val], 'injury_type');
@@ -43,51 +45,50 @@ function makeChart(data) {
     chartData[val] = updated
   }
 
-  console.log(chartData);
 
   labels = Object.keys(chartData);
 
-  chartColors = [
-    'rgb(255, 99, 132)',
-    'rgb(255, 159, 64)',
-    'rgb(255, 205, 86)',
-    'rgb(75, 192, 192)',
-    'rgb(54, 162, 235)',
-    'rgb(153, 102, 255)',
-    'rgb(201, 203, 207)',
-    'rgb(75, 192, 192)',
-    'rgb(201, 203, 207)',
-    'rgb(75, 192, 192)',
-  ];
+  chartColors = ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921", "#083d77", "#ebebd3", "#297373", "#d5d887", "#ef476f"];
   datasets = {};
   for (year in chartData) {
-      for (type in chartData[year]) {
-          console.log(type);
-          if (!datasets[type]) {
-              datasets[type] = {
-                  label: type,
-                  backgroundColor: chartColors.pop(),
-                  data: []
-              };
-          }
-          datasets[type].data.push(chartData[year][type]);
+    for (type in chartData[year]) {
+      if (!datasets[type]) {
+        datasets[type] = {
+          label: type,
+          backgroundColor: chartColors.pop(),
+          data: []
+        };
       }
+      datasets[type].data.push(chartData[year][type]);
+    }
   }
 
-  console.log(datasets);
+  data = Object.values(datasets);
 
+  if (isPhone.matches && !isIpad.matches) {
+    totals = {
+      label: 'Total Injuries Reported',
+      backgroundColor: "#5bc0eb",
+      data: labels.map(i => 0)
+    };
+    for (item in datasets) {
+      for (val in datasets[item].data) {
+        totals.data[val] += datasets[item].data[val];
+      }
+    }
+    data = [totals];
+  }
 
 
   new Chart('injury-report-by-type', {
     type: 'bar',
     data: {
       labels: labels,
-      datasets: Object.values(datasets)
+      datasets: data
     },
     options: {
       title: {
-        display: true,
-        text: 'Chart.js Bar Chart - Stacked'
+        display: false,
       },
       tooltips: {
         mode: 'index',

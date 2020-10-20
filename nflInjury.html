@@ -12,19 +12,26 @@
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"></script>
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
           integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
           crossorigin="anonymous"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
           integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
           crossorigin="anonymous"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@6.2.0/dist/d3.min.js"
+          crossorigin="anonymous"></script>
   <link rel="stylesheet"
         href="assets/styles/custom.css">
-  <script src="assets/scripts/custom.js"></script>
 </head>
 
 <body id="nfl">
@@ -40,17 +47,20 @@
     </div>
   </div>
   <div class="container main-container">
-    This NFL season seems to have been wrought with injuries. 
-    <br/>
+    This NFL season seems to have been wrought with injuries.
+    <br />
     Each week seems to bring about another star NFL running back, wide receiver, or quarterback's season ending injury.
-    <br/>
-    <br/>
+    <br />
+    <br />
     But have there <i>actually</i> been more injuries reported than in previous seasons?
-    <br/>
-    <br/>
+    <br />
+    <br />
     <h5>By the numbers...</h5>
-    
+    <canvas id="injury-report-by-type"></canvas>
   </div>
+
+
+  <script src="assets/scripts/custom.js"></script>
 </body>
 
 </html>

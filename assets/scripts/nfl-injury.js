@@ -177,7 +177,7 @@ function makeInjuredReserveChart(csvData) {
 
   document.getElementById("avg-ir").textContent = avgIr.toFixed(2);
   document.getElementById("sd-ir").textContent = stdDevIr.toFixed(2);
-  document.getElementById("pct-inc").textContent = `${((data[2020] / avgIr)*100).toFixed(2)}%`;
+  document.getElementById("pct-inc").textContent = `${(((data[2020] / avgIr)-1.00)*100).toFixed(2)}%`;
 
   new Chart('injured-reserve', {
     type: 'bar',
